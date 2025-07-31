@@ -1,0 +1,92 @@
+<mvc:View controllerName="bookstore.controller.Home"
+xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+xmlns="sap.m"
+xmlns:smartTable="sap.ui.comp.smarttable"
+xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+xmlns:smartField="sap.ui.comp.smartfield"
+xmlns:smartForm="sap.ui.comp.smartform"
+xmlns:uitable="sap.ui.table"
+xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+<Page id="page" title="Bookstore" showHeader="true">
+    <content>
+        <smartFilterBar:SmartFilterBar
+            id="smartFilterBar"
+            entitySet="Books"
+            smartVariant="true"
+            useToolbar="true"
+            enableBasicSearch="true"
+            persistencyKey="SmartFilterBarKey">
+        </smartFilterBar:SmartFilterBar>       
+
+        <smartTable:SmartTable
+            id="smartTable"
+            entitySet="Books"
+            smartFilterId="smartFilterBar"
+            enableExport="true"
+            enableCopy="false"
+            showRowCount="true"
+            app:useSmartToggle="true"
+            app:useSmartField="true"
+            editTogglable="false"
+            enableAutoBinding="true"
+            tableType="Table"
+            class="sapUiResponsiveContentPadding"
+            enableAutoColumnWidth="true"
+            >
+                <Toolbar>
+                    <ToolbarSpacer ></ToolbarSpacer>
+                    <OverflowToolbar id="_IDGenOverflowToolbar1" >               
+                        <ToolbarSpacer id="_IDGenToolbarSpacer1"/>
+                        <Button id="_IDGenButton7" text="{i18n>Edit}" press="onEdit" icon="sap-icon://edit"/>
+                        <Button id="_IDGenButton1" text="{i18n>Create}" press="onCreate" icon="sap-icon://add" visible="true"/>
+                        <Button id="_IDGenButton3" text="{i18n>Delete}" press="onDelete" icon="sap-icon://delete" visible="true"/>
+                        </OverflowToolbar>
+                </Toolbar>             
+
+        </smartTable:SmartTable>
+    </content>
+</Page>
+
+<Dialog id="editDialog" title="{i18n>Book}" afterClose="onCancel" >
+    <content>
+        <smartForm:SmartForm id="smartForm" entityType="MasterService.Books" editable="true">
+            <smartForm:Group id="_IDGenGroup1">
+                <smartForm:GroupElement id="_IDGenGroupElement1">
+                    <Label id="_IDGenLabel1" text="Title"/>
+                    <smartField:SmartField id="_IDGenSmartField1" value="{title}" editable="true"/>
+                </smartForm:GroupElement>
+                <smartForm:GroupElement id="_IDGenGroupElement2">
+                    <Label id="_IDGenLabel2" text="Description"/>
+                    <smartField:SmartField id="_IDGenSmartField2" value="{descr}" />
+                </smartForm:GroupElement>
+                <smartForm:GroupElement id="_IDGenGroupElement3">
+                    <Label id="_IDGenLabel3" text="Author"/>
+                    <smartField:SmartField id="_IDGenSmartField3" value="{author_ID}"/>
+                </smartForm:GroupElement>
+                <smartForm:GroupElement id="_IDGenGroupElement4">
+                    <Label id="_IDGenLabel4" text="Genre"/>
+                    <smartField:SmartField id="_IDGenSmartField4" value="{genre_ID}"/>
+                </smartForm:GroupElement>
+                <smartForm:GroupElement id="_IDGenGroupElement5">
+                    <Label id="_IDGenLabel5" text="Stock"/>
+                    <smartField:SmartField id="_IDGenSmartField5" value="{stock}" />
+                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="_IDGenGroupElement6">
+                    <Label id="_IDGenLabel6" text="Price"/>
+                    <smartField:SmartField id="_IDGenSmartField6" value="{price}" />
+                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="_IDGenGroupElement7">
+                    <Label id="_IDGenLabel7" text="Currency"/>
+                    <smartField:SmartField id="_IDGenSmartField7" value="{currency}" />
+                </smartForm:GroupElement>
+            </smartForm:Group>
+        </smartForm:SmartForm>
+    </content>
+    <endButton>
+        <Button id="_IDGenButton4" text="{i18n>Cancel}" press="onCancel"/>
+    </endButton>
+    <beginButton>
+        <Button id="_IDGenButton5" text="{i18n>Save}" press="onSave"/>
+    </beginButton>
+</Dialog>
+</mvc:View>

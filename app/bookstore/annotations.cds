@@ -1,0 +1,1 @@
+using MasterService as service from '../../srv/master-service';
